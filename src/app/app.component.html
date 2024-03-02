@@ -1,17 +1,22 @@
+<!-- HTML template for the component -->
 <div class="search">
-  <form #form="ngForm" (submit)="submit()">
-    <input type="text" placeholder="Search city" name="city" [(ngModel)]="cityName">
+  <form #form="ngForm" (submit)="submit()"> <!-- Form for city search with ngForm binding -->
+    <input type="text" placeholder="Search city" name="city" [(ngModel)]="cityName"> <!-- Input field for city name with two-way data binding -->
   </form>
 </div>
+
+<!-- Display weather data if available -->
 <div class="container" *ngIf="weatherData">
   <div class="upper-data">
 
+    <!-- Display hot or cold image based on temperature -->
     <img src="assets/hot.jpg" alt="hot" *ngIf="weatherData.main.temp ?? 0 > 60">
     <img src="assets/cold.jpg" alt="cold" *ngIf="weatherData.main.temp ?? 0 <= 60">
 
+    <!-- Display weather information -->
     <div class="weather-data">
-      <div class="location">{{weatherData.name}}</div>
-      <div class="temperature">{{ weatherData.main.temp | number: '1.0-0'}}°F</div>
+      <div class="location">{{weatherData.name}}</div> <!-- Display city name -->
+      <div class="temperature">{{ weatherData.main.temp | number: '1.0-0'}}°F</div> <!-- Display temperature -->
     </div>
   </div>
   <div class="lower-data">
@@ -19,7 +24,9 @@
       More Information
     </div>
 
+    <!-- Display additional weather information -->
     <div class="more-info-container">
+      <!-- Display minimum temperature -->
       <div class="info-block">
         <div class="info-block-label">
           <img src="assets/min.png" alt="min">
@@ -30,6 +37,7 @@
         </div>
       </div>
 
+      <!-- Display maximum temperature -->
       <div class="info-block">
         <div class="info-block-label">
           <img src="assets/max.png" alt="max">
@@ -40,6 +48,7 @@
         </div>
       </div>
 
+      <!-- Display humidity -->
       <div class="info-block">
         <div class="info-block-label">
           <img src="assets/humidity.png" alt="min">
@@ -50,6 +59,7 @@
         </div>
       </div>
 
+      <!-- Display wind speed -->
       <div class="info-block">
         <div class="info-block-label">
           <img src="assets/wind.png" alt="min">
@@ -63,64 +73,5 @@
   </div>
 </div>
 
-<!--
-<div class="container">
-  <div class="upper-data">
-
-    <img src="assets/hot.jpg" alt="hot" *ngIf="16>15">
-    <img src="assets/cold.jpg" alt="cold" *ngIf="16 <= 15">
-
-    <div class="weather-data">
-      <div class="location">Wellington</div>
-      <div class="temperature">{{ 14.00 | number: '1.0-0'}}°C</div>
-    </div>
-  </div>
-  <div class="lower-data">
-    <div class="more-info-label">
-      More Information
-    </div>
-
-    <div class="more-info-container">
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="assets/min.png" alt="min">
-          <span>min</span>
-        </div>
-        <div class="info-block-value">
-          10°C
-        </div>
-      </div>
-
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="assets/max.png" alt="max">
-          <span>max</span>
-        </div>
-        <div class="info-block-value">
-          25°C
-        </div>
-      </div>
-
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="assets/humidity.png" alt="humidity">
-          <span>humidity</span>
-        </div>
-        <div class="info-block-value">
-          47%
-        </div>
-      </div>
-
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="assets/wind.png" alt="wind">
-          <span>wind</span>
-        </div>
-        <div class="info-block-value">
-          11 km/h
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
+<!-- Angular router outlet for handling navigation -->
 <router-outlet></router-outlet>
